@@ -41,6 +41,7 @@
         .menu ul li:hover{
             color:#91283A;
             cursor: pointer;
+            font-size:20px;
         }
         .header{
             margin-bottom:15px;
