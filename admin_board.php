@@ -90,7 +90,7 @@
 
             </tbody>
         </table>
-            <form action="post.php" method="post">
+            <form action="add_post.php" method="post">
                  <button class="btn btn-success m-3">Add Post+</button>
             </form>
     </div>
@@ -106,7 +106,7 @@
 
             </tbody>
         </table>
-        <form action="categorie.php" method="post">
+        <form action="add_cat.php" method="post">
                  <button class="btn btn-success m-3">Add Categorie+</button>
             </form>
     </div>
