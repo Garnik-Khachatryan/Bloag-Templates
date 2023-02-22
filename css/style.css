@@ -1,0 +1,52 @@
+div> button{
+    padding:10px 15px !important;
+ 
+}
+.header h2{
+    font-size:25px;
+    padding-top:15px;
+    color:#EB0D32;
+}
+
+.menu ul {
+   display:flex;
+   
+}
+.menu ul li{
+   margin-left:20px;
+   list-style-type: none;
+   font-size:22px;
+   padding-top:15px;
+   color:#EB0D32;
+   transition:2s ease-out ;
+}
+.menu ul li:hover{
+    color:#91283A;
+    cursor: pointer;
+    font-size:20px;
+}
+.header{
+    margin-bottom:15px;
+}
+.post-content{
+    opacity: 1;
+    display:flex;
+}
+.post-active {
+    display:flex  !important;
+}
+.categorie-active{
+    display:flex !important;
+}
+.categorie-content{
+    opacity: 1;
+    display:flex;
+    margin-top:20px;
+}
+img{
+    width:80px;
+    height:80px;
+}
+.crudBtn a{
+    padding-left:20px;
+}

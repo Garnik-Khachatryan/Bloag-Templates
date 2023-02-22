@@ -5,7 +5,16 @@ $link=mysqli_connect('localhost','root','','blogdb');
     session_destroy();
     header("location:admin_login.php");
  }
- 
+ if(isset($_GET['id'])){
+    $deletId=$_GET['id'];
+    $val=mysqli_query($link,"DELETE FROM posts WHERE id='$deletId'");
+
+   }
+   if (isset($_GET['id'])) {
+    $deletCatId=$_GET['id'];
+    $query="DELETE FORM categorie WHERE id='$deletCatId'";
+    $result=mysqli_query($link,$query);
+ }
  $show_post_date="SELECT * FROM posts ";
  $show_post_query=mysqli_query($link,$show_post_date); 
  $show_cat_date="SELECT * FROM categorie";
@@ -20,59 +29,9 @@ $link=mysqli_connect('localhost','root','','blogdb');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
      <style>
-       div> button{
-            padding:10px 15px !important;
-         
-        }
-        .header h2{
-            font-size:25px;
-            padding-top:15px;
-            color:#EB0D32;
-        }
-        
-        .menu ul {
-           display:flex;
-           
-        }
-        .menu ul li{
-           margin-left:20px;
-           list-style-type: none;
-           font-size:22px;
-           padding-top:15px;
-           color:#EB0D32;
-           transition:2s ease-out ;
-        }
-        .menu ul li:hover{
-            color:#91283A;
-            cursor: pointer;
-            font-size:20px;
-        }
-        .header{
-            margin-bottom:15px;
-        }
-        .post-content{
-            opacity: 1;
-            display:flex;
-        }
-        .post-active {
-            display:flex  !important;
-        }
-        .categorie-active{
-            display:flex !important;
-        }
-        .categorie-content{
-            opacity: 1;
-            display:flex;
-            margin-top:20px;
-        }
-        img{
-            width:80px;
-            height:80px;
-        }
-        .crudBtn a{
-            padding-left:20px;
-        }
+      
      </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
@@ -109,9 +68,8 @@ $link=mysqli_connect('localhost','root','','blogdb');
                             <td><img src="<?= $row['img']?>"></td>
                             <td>
                                 <div class="d-fle crudBtn">
-                                <a href="show.php?id=<?= $row["id"] ?>>" class="btn btn-outline-success">Show</a> 
-                                <a href="update.php?id=<?= $row["id"] ?>>" class="btn btn-outline-warning">Updet</a>
-                                <a href="index.php?id=<?= $row["id"] ?>>" class="btn btn-outline-danger">Delete</a>
+                                    <a href="updatePost.php?id=<?= $row["id"] ?>>" class="btn btn-outline-warning">Updet</a>
+                                    <a href="admin_board.php?id=<?= $row["id"] ?>>" class="btn btn-outline-danger">Delete</a>
                                 </div>
                            </td>
                     </tr>
@@ -139,9 +97,8 @@ $link=mysqli_connect('localhost','root','','blogdb');
                             <td><?= $val['title']?></td>
                             <td>
                                 <div class="d-fle crudBtn">
-                                    <a href="show.php?id=<?= $row["id"] ?>>" class="btn btn-outline-success">Show</a> 
-                                    <a href="update.php?id=<?= $row["id"] ?>>" class="btn btn-outline-warning">Updet</a>
-                                    <a href="index.php?id=<?= $row["id"] ?>>" class="btn btn-outline-danger">Delete</a>
+                                    <a href="updateCat.php?id=<?= $val["id"] ?>>" class="btn btn-outline-warning">Updet</a>
+                                    <a href="admin_board.php?id=<?= $val["id"] ?>>" class="btn btn-outline-danger">Delete</a>
                                 </div>
                            </td>
                     </tr>
