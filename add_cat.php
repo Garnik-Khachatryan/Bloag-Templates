@@ -27,7 +27,7 @@ else{
 </head>
 <body>
 <h1 class="text-center text-success m-3">Add Categories</h1>
-<form action="admin_borad.php" method="post" class="w-50 m-auto m-3" >
+<form action="" method="post" class="w-50 m-auto m-3" >
     <div class="form-group" >
         <label for="title" class="text-primary">Title</label>
         <input type="text" name="cat_title" id="title" class="form-control">
