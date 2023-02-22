@@ -1,10 +1,15 @@
 <?php
+$link=mysqli_connect('localhost','root','','blogdb');
   session_start();
  if(isset($_POST['logOut'])){
     session_destroy();
     header("location:admin_login.php");
  }
-
+ 
+ $show_post_date="SELECT * FROM posts ";
+ $show_post_query=mysqli_query($link,$show_post_date); 
+ $show_cat_date="SELECT * FROM categorie";
+ $show_cat_query=mysqli_query($link,$show_cat_date);
 ?> 
 
 <!DOCTYPE html>
@@ -47,7 +52,7 @@
             margin-bottom:15px;
         }
         .post-content{
-            opacity: 0;
+            opacity: 1;
             display:flex;
         }
         .post-active {
@@ -57,8 +62,16 @@
             display:flex !important;
         }
         .categorie-content{
-            opacity: 0;
+            opacity: 1;
             display:flex;
+            margin-top:20px;
+        }
+        img{
+            width:80px;
+            height:80px;
+        }
+        .crudBtn a{
+            padding-left:20px;
         }
      </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -88,7 +101,22 @@
                 </tr>
            </thead>
             <tbody>
+                <?php while($row=mysqli_fetch_array($show_post_query)):?>
+                    <tr>
+                            <td><?= $row['id']?></td>
+                            <td><?= $row['title']?></td>
+                            <td><?= $row['content']?></td>
+                            <td><img src="<?= $row['img']?>"></td>
+                            <td>
+                                <div class="d-fle crudBtn">
+                                <a href="show.php?id=<?= $row["id"] ?>>" class="btn btn-outline-success">Show</a> 
+                                <a href="update.php?id=<?= $row["id"] ?>>" class="btn btn-outline-warning">Updet</a>
+                                <a href="index.php?id=<?= $row["id"] ?>>" class="btn btn-outline-danger">Delete</a>
+                                </div>
+                           </td>
+                    </tr>
 
+                <?php endwhile; ?>
             </tbody>
         </table>
             <form action="add_post.php" method="post">
@@ -101,10 +129,23 @@
                 <tr>
                     <th scope="col">Categorie ID</th>
                     <th scope="col">Categorie Title</th>
+                    <th scope="col">Action</th>
                 </tr>
            </thead>
             <tbody>
-
+            <?php while($val=mysqli_fetch_array($show_cat_query)):?>
+                    <tr>
+                            <td><?= $val['categorie_id']?></td>
+                            <td><?= $val['title']?></td>
+                            <td>
+                                <div class="d-fle crudBtn">
+                                    <a href="show.php?id=<?= $row["id"] ?>>" class="btn btn-outline-success">Show</a> 
+                                    <a href="update.php?id=<?= $row["id"] ?>>" class="btn btn-outline-warning">Updet</a>
+                                    <a href="index.php?id=<?= $row["id"] ?>>" class="btn btn-outline-danger">Delete</a>
+                                </div>
+                           </td>
+                    </tr>
+                <?php endwhile; ?>
             </tbody>
         </table>
         <form action="add_cat.php" method="post">
@@ -112,7 +153,7 @@
             </form>
     </div>
 </body>
-<script>
+<!-- <script>
   let post=document.getElementById('post');
   let post_table=document.getElementById('post-table');
   let categoire=document.getElementById('categorie');
@@ -128,5 +169,5 @@
     post_table.style.opacity="0";
     cat_table.style.transform="translate(5px,-55px)";
   });
-</script>
+</script> -->
 </html>

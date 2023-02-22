@@ -1,3 +1,16 @@
+<?php 
+$link=mysqli_connect('localhost','root','','blogdb');
+if(isset($_POST['addCat'])){
+   $catTitle=$_POST['cat_title'];
+   $insert_db="INSERT INTO categorie(title) VALUES('$catTitle') ";
+   $insert_db_query=mysqli_query( $link,$insert_db);
+   echo "<script>alert('Success')</script>";
+}
+else{
+    echo "<script>alert('Error!!!!')</script>";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +27,13 @@
 </head>
 <body>
 <h1 class="text-center text-success m-3">Add Categories</h1>
-<form action="" method="post" class="w-50 m-auto m-3">
+<form action="admin_borad.php" method="post" class="w-50 m-auto m-3" >
     <div class="form-group" >
         <label for="title" class="text-primary">Title</label>
         <input type="text" name="cat_title" id="title" class="form-control">
     </div>
     <div>
-        <input type="button" value="Add Categorie" class="btn btn-outline-primary" name="addCat">
+        <button class="btn btn-outline-primary" name="addCat">Add Categorie</button>
     </div>
 </form>
 </body>

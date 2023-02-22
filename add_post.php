@@ -11,6 +11,7 @@
         $insert_db="INSERT INTO posts(title,content,img) VALUES('$postTitle','$postContent','$target_file') ";
         $insert_db_query=mysqli_query( $link,$insert_db);
         echo "<script>alert('Success')</script>";
+        header("location:admin_login.php");
      }
    else{
      echo "<script>alert('Error!!!!')</script>";
@@ -32,7 +33,7 @@
 </head>
 <body>
 <h1 class="text-center text-success m-3">Add Posts</h1>
-<form action="" method="post" class="w-50 m-auto m-3">
+<form action="admin_board.php" method="post" class="w-50 m-auto m-3" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title" class="text-primary">Title</label>
         <input type="text" name="post_title" id="title" class="form-control">
