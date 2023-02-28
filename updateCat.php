@@ -1,14 +1,17 @@
 <?php
   $link=mysqli_connect('localhost','root','','blogdb');
-  if(isset($_GET['id'])){
-   $id=$_GET['id'];
+  $id = isset($_GET['id']) ? $_GET['id'] : null;
+    $query = "SELECT * FROM categorie  where categorie_id='$id'";
+    $res =mysqli_query($link,$query);
+  $updateTitle;
+  while($row=mysqli_fetch_array($res)){
+    $updateTitle=$row['title'];
   }
-  if (isset($_POST['updateCat'])) {
+ if (isset($_POST['updateCat'])) {
     $update_title=$_POST['update_title'];
-    $query="UPDATE categorie SET title='$update_title' WHERE categorie_id=$_GET[id]";
-    $res=mysqli_query($link,$query) or die(mysqli_connect_error());
+    $query="UPDATE categorie SET title=$update_title WHERE categorie_id='$id'";
+    $res=mysqli_query($link,$query) or die(mysqli_connect_error($link));
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,7 @@
 <form action="admin_board.php" method="post" class="w-50 m-auto m-3" >
     <div class="form-group" >
         <label for="title" class="text-warning">Title</label>
-        <input type="text" name="update_title" id="title" class="form-control">
+        <input type="text" name="update_title" id="title" class="form-control" value="<?= $updateTitle?>">
     </div>
     <div>
         <button class="btn btn-outline-warning" name="updateCat">Update  Categorie</button>

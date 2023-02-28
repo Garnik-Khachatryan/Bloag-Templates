@@ -12,8 +12,14 @@ $link=mysqli_connect('localhost','root','','blogdb');
    }
    if (isset($_GET['id'])) {
     $deletCatId=$_GET['id'];
-    $query="DELETE FORM categorie WHERE id='$deletCatId'";
-    $result=mysqli_query($link,$query);
+    $query=mysqli_query($link,"DELETE FROM categorie WHERE categorie_id='$deletCatId'")or die(mysqli_connect_error($link));
+    if ($query){
+        header('location:admin_board.php');
+    }
+   
+    else{
+        echo "<script>alert('Error!!')</script>";
+    }
  }
  $show_post_date="SELECT * FROM posts ";
  $show_post_query=mysqli_query($link,$show_post_date); 
@@ -97,8 +103,8 @@ $link=mysqli_connect('localhost','root','','blogdb');
                             <td><?= $val['title']?></td>
                             <td>
                                 <div class="d-fle crudBtn">
-                                    <a href="updateCat.php?id=<?= $val["id"] ?>>" class="btn btn-outline-warning">Updet</a>
-                                    <a href="admin_board.php?id=<?= $val["id"] ?>>" class="btn btn-outline-danger">Delete</a>
+                                    <a href="updateCat.php?id=<?= $val["categorie_id"] ?>>" class="btn btn-outline-warning">Updet</a>
+                                    <a href="admin_board.php?id=<?= $val["categorie_id"] ?>" class="btn btn-outline-danger">Delete</a>
                                 </div>
                            </td>
                     </tr>
