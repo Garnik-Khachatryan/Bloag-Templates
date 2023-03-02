@@ -3,13 +3,13 @@
    if(isset($_POST['addPost'])){
         $postTitle=$_POST['post_title'];
         $postContent=$_POST['post_content'];
-        $target_dir="upload/";
+        $target_dir="upload/"; 
         $img_name=$_FILES['imgUpload']['name'];
         $img_tmp_name=$_FILES['imgUpload']['tmp_name'];
         $target_file=$target_dir.basename($img_name);
         move_uploaded_file( $img_tmp_name,$target_file);
-        $insert_db="INSERT INTO posts(title,content,img) VALUES('$postTitle','$postContent','$target_file') ";
-        $insert_db_query=mysqli_query( $link,$insert_db);
+        $insert_db="INSERT INTO posts(title,content,img) VALUES('$postTitle','$postContent','$target_file')";
+        $insert_db_query=mysqli_query( $link,$insert_db)or die(mysqli_connect_error($link));
         echo "<script>alert('Success')</script>";
         
      }

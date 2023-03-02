@@ -4,7 +4,7 @@
     $query = "SELECT * FROM categorie  where categorie_id='$id'";
     $res =mysqli_query($link,$query);
   $updateTitle;
-  while($row=mysqli_fetch_array($res)){
+  while($row=mysqli_fetch_array($res)){ 
     $updateTitle=$row['title'];
   }
  if (isset($_POST['updateCat'])) {
@@ -30,7 +30,7 @@
 </head>
 <body>
 <h1 class="text-center text-warning m-3">Update Categories</h1>
-<form action="admin_board.php" method="post" class="w-50 m-auto m-3" >
+<form action="updateCatRequest.php" method="post" class="w-50 m-auto m-3" >
     <div class="form-group" >
         <label for="title" class="text-warning">Title</label>
         <input type="text" name="update_title" id="title" class="form-control" value="<?= $updateTitle?>">
